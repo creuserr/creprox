@@ -35,7 +35,7 @@ class handler(BaseHTTPRequestHandler):
       req = requests.get(url, proxies=proxy, headers=headers)
       self.send_response(200)
       self.send_header('Content-type', 'application/json')
-      self.send_header('X-Request-Proxy', '\n'.join(proxy))
+      self.send_header('X-Request-Proxy', '\n'.join(proxy['http']))
       self.end_headers()
       wfile = {
         'status_code': req.status_code,
@@ -50,7 +50,7 @@ class handler(BaseHTTPRequestHandler):
       req = requests.get(url, proxies=proxy, headers=headers, data=self.rfile)
       self.send_response(200)
       self.send_header('Content-type', 'application/json')
-      self.send_header('X-Request-Proxy', '\n'.join(proxy))
+      self.send_header('X-Request-Proxy', '\n'.join(proxy['http']))
       self.end_headers()
       wfile = {
         'status_code': req.status_code,
