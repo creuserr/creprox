@@ -19,7 +19,7 @@ class handler(BaseHTTPRequestHandler):
     try:
       
     except e:
-      self.end(400, '400 Re')
+      self.end(400, f'400 Bad Request: The requested URL raised an error: {str(e)')
   
   def end(self, status, text):
     self.send_response(status)
