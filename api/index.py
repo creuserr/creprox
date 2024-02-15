@@ -7,6 +7,7 @@ class handler(BaseHTTPRequestHandler):
     self.end(200, self.path)
   
   def end(self, status, text):
+    self.send_response(status)
     self.send_header('Content-type', 'text/plain')
     self.end_headers()
     self.wfile.write(text.encode('utf-8'))
