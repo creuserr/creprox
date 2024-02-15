@@ -1,5 +1,6 @@
 from http.server import BaseHTTPRequestHandler
 import requests
+import base64
 import json
 
 class handler(BaseHTTPRequestHandler):
@@ -25,7 +26,7 @@ class handler(BaseHTTPRequestHandler):
       req = requests.get(path, proxies=proxy)
       if req.status_code > 399:
         raise Exception(f'{req.status_code}: {req.text}')
-      self.end(200, req.text, req.request.proxies, req.headers)
+      self.end(200, req.text, proxy, req.headers)
     except Exception as e:
       return self.end(400, f'400 Bad Request: The requested URL raised an error: {str(e)}')
   
@@ -33,7 +34,8 @@ class handler(BaseHTTPRequestHandler):
     self.send_response(status)
     self.send_header('Content-type', 'text/plain')
     if proxy != None:
-      self.send_header('X-Request-Proxy', json.dumps(proxy))
+      proxy = 
+      self.send_header('X-Request-Proxy', json.dumps(proxy).encode('base64')))
       self.send_header('X-Request-Headers', json.dumps(headers))
     self.end_headers()
     self.wfile.write(text.encode('utf-8'))
