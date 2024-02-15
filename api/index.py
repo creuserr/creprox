@@ -6,8 +6,11 @@ import json
 class handler(BaseHTTPRequestHandler):
   def do_GET(self):
     query = parse_qs(urlparse(self))
-    if 'url' not in query:
-      return self.end(400, '400 Bad Request')
+    try:
+      url = query['url'][0]
+      
+    except:
+      return self.end(400, '400 Bad Request: Incomplete parameter')
   
   def end(self, status, text):
     self.send_header('Content-type', 'text/plain')
