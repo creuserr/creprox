@@ -4,6 +4,7 @@ import json
 
 class handler(BaseHTTPRequestHandler):
   def do_GET(self):
+    # format the provided url
     path = self.path
     if 'http:/' in path:
       path = path.replace(r'http\:\/', 'http://')
@@ -11,11 +12,16 @@ class handler(BaseHTTPRequestHandler):
       path = path.replace(r'https\:\/', 'https://')
     else:
       return self.end(400, '400 Bad Request: Invalid URL')
+    
+    # generate scraped proxies
     try:
+      
       proxy = requests.get('https://api.proxyscrape.com/?request=getproxies&proxytype=http&country=all&ssl=all&anonymity=all')
       proxy = { 'http': proxy.text.split('\n') }
     except:
       self.end(500, '500 Internal Error: Failed to generate scraped proxies')
+    
+    # start the request
     try:
       req = requests.get(path, proxies=proxy)
       if req.status_code > 399:
