@@ -1,5 +1,5 @@
 # creprox: rotating proxy
-creprox is an open-source HTTP GET request proxy that utilizes rotating IP origins, useful and commonly used for web scraping purposes.
+creprox is an open-source HTTP GET request proxy that utilizes rotating IP origins, useful and commonly used for web scraping purposes. [Try a demo](https://creprox.vercel.app/https:/httpbin.org/ip)
 
 ```http
 GET https://creprox.vercel.app/https://httpbin.org/ip
