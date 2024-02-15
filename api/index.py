@@ -36,8 +36,7 @@ class handler(BaseHTTPRequestHandler):
     if proxy != None:
       proxy = json.dumps(proxy).encode('utf-8')
       proxy = base64.b64encode(proxy)
-      raise BaseException(2)
       self.send_header('X-Request-Proxy', proxy.decode('utf-8'))
-      self.send_header('X-Request-Headers', json.dumps(headers))
+      self.send_header('X-Request-Headers', json.dumps(dict(headers)))
     self.end_headers()
     self.wfile.write(text.encode('utf-8'))
