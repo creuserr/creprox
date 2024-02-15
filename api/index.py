@@ -3,6 +3,11 @@ import requests
 import json
 
 class handler(BaseHTTPRequestHandler):
+  def do_GET(self):
+    if ''
+
+"""
+class handler(BaseHTTPRequestHandler):
   def do_POST(self):
     # check for proxy
     if 'X-Request-Proxy' in self.headers:
@@ -70,3 +75,4 @@ class handler(BaseHTTPRequestHandler):
     self.send_header('Content-type', 'text/plain')
     self.end_headers()
     self.wfile.write(text.encode('utf-8'))
+"""
