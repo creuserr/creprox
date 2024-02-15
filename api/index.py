@@ -14,7 +14,6 @@ class handler(BaseHTTPRequestHandler):
     
     # generate scraped proxies
     try:
-      
       proxy = requests.get('https://api.proxyscrape.com/?request=getproxies&proxytype=http&country=all&ssl=all&anonymity=all')
       proxy = { 'http': proxy.text.split('\n') }
     except:
