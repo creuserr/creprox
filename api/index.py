@@ -6,7 +6,13 @@ import json
 class handler(BaseHTTPRequestHandler):
   def do_GET(self):
     query = parse_qs(urlparse(self))
-    if 
+    if 'url' not in query:
+      return self.end(400, '400 Bad Request')
+  
+  def end(self, status, text):
+    self.send_header('Content-type', 'text/plain')
+    self.end_headers()
+    self.wfile.write(text.encode('utf-8'))
 
 """
 class handler(BaseHTTPRequestHandler):
