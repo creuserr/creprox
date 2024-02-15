@@ -6,9 +6,9 @@ class handler(BaseHTTPRequestHandler):
     # format the provided url
     path = self.path[1:]
     if 'http:/' in path:
-      path = path.replace(r'http\:\/', 'http://')
+      path = path.replace('http:', 'http:/')
     elif 'https:/' in path:
-      path = path.replace(r'https\:\/', 'https://')
+      path = path.replace('https:', 'https:/')
     else:
       return self.end(400, '400 Bad Request: Invalid URL')
     
