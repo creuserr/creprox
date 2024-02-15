@@ -19,9 +19,10 @@ class handler(BaseHTTPRequestHandler):
     try:
       req = requests.get(path, proxies=proxy)
       if req.status_code > 399:
-        
+        raise Exception(f'{req.status_code}: {req.text}')
+      self.end(200, req.tex)
     except e:
-      self.end(400, f'400 Bad Request: The requested URL raised an error: {str(e)}')
+      return self.end(400, f'400 Bad Request: The requested URL raised an error: {str(e)}')
   
   def end(self, status, text):
     self.send_response(status)
