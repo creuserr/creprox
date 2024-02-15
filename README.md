@@ -21,5 +21,4 @@ X-Request-Headers: JSON
 X-Request-Proxy: Base-64 JSON
 ```
 
-# Third-party libraries
-This service heavily relies on third-party libraries, including `requests` and [proxyscrape.com](https://proxyscrape.com).
+*This service heavily utilizes and accredits `requests`, [proxyscrape.com](https://proxyscrape.com), and [proxy-list.download](https://proxy-list.download).*
