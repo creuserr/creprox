@@ -5,10 +5,13 @@ import json
 class handler(BaseHTTPRequestHandler):
   def do_GET(self):
     path = self.path
-    if 'http:' in path:
-      path = path.replace('http:', 'http://')
-     
-    self.end(200, self.path)
+    if 'http:/' in path:
+      path = path.replace('http:/', 'http://')
+    elif 'https:/' in path:
+      path = path.replace('https:/', 'https://')
+    else:
+      self.end(400, '400 Bad Request: Invalid URL')
+    
   
   def end(self, status, text):
     self.send_response(status)
