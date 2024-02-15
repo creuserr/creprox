@@ -63,7 +63,7 @@ class handler(BaseHTTPRequestHandler):
     self.end('400 Bad Request: X-Request-Method specified an unsupported method')
     
   def do_GET(self):
-    end(400, '400 Bad Request: Invalid method')
+    self.end(400, '400 Bad Request: Invalid method')
   
   def end(self, status, text):
     self.send_response(status)
