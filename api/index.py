@@ -4,6 +4,10 @@ import json
 
 class handler(BaseHTTPRequestHandler):
   def do_GET(self):
+    path = self.path
+    if 'http:' in path:
+      path = path.replace('http:', 'http://')
+     
     self.end(200, self.path)
   
   def end(self, status, text):
