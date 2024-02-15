@@ -1,10 +1,12 @@
 from http.server import BaseHTTPRequestHandler
+from urllib.parse import urlparse, parse_qs
 import requests
 import json
 
 class handler(BaseHTTPRequestHandler):
   def do_GET(self):
-    if ''
+    query = parse_qs(urlparse(self))
+    if 
 
 """
 class handler(BaseHTTPRequestHandler):
