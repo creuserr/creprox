@@ -33,7 +33,7 @@ class handler(BaseHTTPRequestHandler):
     self.send_response(status)
     self.send_header('Content-type', 'text/plain')
     if proxy != None:
-      self.send_header('X-Request-Proxy', proxy)
+      self.send_header('X-Request-Proxy', json.dumps(proxy))
       self.send_header('X-Request-Headers', json.dumps(headers))
     self.end_headers()
     self.wfile.write(text.encode('utf-8'))
