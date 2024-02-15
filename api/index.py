@@ -28,7 +28,7 @@ class handler(BaseHTTPRequestHandler):
         raise Exception(f'{req.status_code}: {req.text}')
       raise proxy['http']
       self.end(200, req.text, proxy['http'], req.headers)
-    except Exception as e:
+    except BaseException as e:
       return self.end(400, f'400 Bad Request: The requested URL raised an error: {str(e)}')
   
   def end(self, status, text, proxy=None, headers=None):
