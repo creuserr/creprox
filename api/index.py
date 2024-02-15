@@ -15,7 +15,11 @@ class handler(BaseHTTPRequestHandler):
       proxy = requests.get('https://api.proxyscrape.com/?request=getproxies&proxytype=http&country=all&ssl=all&anonymity=all')
       proxy = proxy.text.split('\n')
     except:
-      self.end(500, '500 Internal Error: Failed to sc')
+      self.end(500, '500 Internal Error: Failed to generate scraped proxies')
+    try:
+      
+    except e:
+      self.end(400, '400 Re')
   
   def end(self, status, text):
     self.send_response(status)
