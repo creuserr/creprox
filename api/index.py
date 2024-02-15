@@ -16,8 +16,9 @@ class handler(BaseHTTPRequestHandler):
     
     # generate scraped proxies
     try:
-      proxy = requests.get('https://api.proxyscrape.com/?request=getproxies&proxytype=http&country=all&ssl=all&anonymity=all')
-      proxy = { 'http': proxy.text.split('\n') }
+      prox1 = requests.get('https://api.proxyscrape.com/?request=getproxies&proxytype=https&country=all&ssl=all&anonymity=all')
+      prox2 = requests.get('https://www.proxy-list.download/api/v1/get?type=https')
+      proxy = { 'https': proxy.text.split('\n') }
     except:
       self.end(500, '500 Internal Error: Failed to generate scraped proxies')
     
@@ -26,7 +27,7 @@ class handler(BaseHTTPRequestHandler):
       req = requests.get(path, proxies=proxy)
       if req.status_code > 399:
         raise Exception(f'{req.status_code}: {req.text}')
-      self.end(200, req.text, proxy['http'], req.headers)
+      self.end(200, req.text, proxy['https'], req.headers)
     except BaseException as e:
       return self.end(400, f'400 Bad Request: The request raised an error\n{str(e)}')
   
