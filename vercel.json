@@ -3,5 +3,9 @@
   "builds": [{
     "src": "api/index.py",
     "use": "@vercel/node"
+  }],
+  "rewrites": [{
+    "source": "/(.*)",
+    "destination": "/index.js"
   }]
 }
