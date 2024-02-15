@@ -6,11 +6,13 @@ class handler(BaseHTTPRequestHandler):
   def do_GET(self):
     path = self.path
     if 'http:/' in path:
-      path = path.replace('http:/', 'http://')
+      path = path.replace(r'http\:\/', 'http://')
     elif 'https:/' in path:
-      path = path.replace('https:/', 'https://')
+      path = path.replace(r'https\:\/', 'https://')
     else:
-      self.end(400, '400 Bad Request: Invalid URL')
+      return self.end(400, '400 Bad Request: Invalid URL')
+    proxy = requests.get('https://api.proxyscrape.com/?request=getproxies&proxytype=http&country=all&ssl=all&anonymity=all')
+    proxy = proxy.text.split('\n')
     
   
   def end(self, status, text):
