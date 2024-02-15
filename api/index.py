@@ -11,9 +11,11 @@ class handler(BaseHTTPRequestHandler):
       path = path.replace(r'https\:\/', 'https://')
     else:
       return self.end(400, '400 Bad Request: Invalid URL')
-    proxy = requests.get('https://api.proxyscrape.com/?request=getproxies&proxytype=http&country=all&ssl=all&anonymity=all')
-    proxy = proxy.text.split('\n')
-    
+    try:
+      proxy = requests.get('https://api.proxyscrape.com/?request=getproxies&proxytype=http&country=all&ssl=all&anonymity=all')
+      proxy = proxy.text.split('\n')
+    except:
+      self.end(500, '500 Internal Error: Failed to sc')
   
   def end(self, status, text):
     self.send_response(status)
