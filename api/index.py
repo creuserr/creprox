@@ -5,9 +5,9 @@ class handler(BaseHTTPRequestHandler):
   def do_GET(self):
     # format the provided url
     path = self.path[1:]
-    if 'http:/' in path:
+    if 'http:' in path:
       path = path.replace('http:', 'http:/')
-    elif 'https:/' in path:
+    elif 'https:' in path:
       path = path.replace('https:', 'https:/')
     else:
       return self.end(400, '400 Bad Request: Invalid URL')
