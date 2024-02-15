@@ -18,7 +18,7 @@ class handler(BaseHTTPRequestHandler):
     try:
       prox1 = requests.get('https://api.proxyscrape.com/?request=getproxies&proxytype=https&country=all&ssl=all&anonymity=all')
       prox2 = requests.get('https://www.proxy-list.download/api/v1/get?type=https')
-      proxy = { 'https': proxy.text.split('\n') }
+      proxy = { 'https': prox1.text.split('\n') + prox2.text.split('\n') }
     except:
       self.end(500, '500 Internal Error: Failed to generate scraped proxies')
     
