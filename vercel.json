@@ -1,4 +1,7 @@
 {
   "version": 2,
-  
+  "builds": [{
+    "src": "api/index.py",
+    "use": "@vercel/node"
+  }]
 }
