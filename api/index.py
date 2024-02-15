@@ -1,6 +1,5 @@
 from http.server import BaseHTTPRequestHandler
 import requests
-import json
 
 class handler(BaseHTTPRequestHandler):
   def do_GET(self):
