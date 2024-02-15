@@ -4,7 +4,7 @@ import requests
 class handler(BaseHTTPRequestHandler):
   def do_GET(self):
     # format the provided url
-    path = self.path
+    path = self.path[1:]
     if 'http:/' in path:
       path = path.replace(r'http\:\/', 'http://')
     elif 'https:/' in path:
