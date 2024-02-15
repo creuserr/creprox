@@ -13,13 +13,15 @@ class handler(BaseHTTPRequestHandler):
       return self.end(400, '400 Bad Request: Invalid URL')
     try:
       proxy = requests.get('https://api.proxyscrape.com/?request=getproxies&proxytype=http&country=all&ssl=all&anonymity=all')
-      proxy = proxy.text.split('\n')
+      proxy = { 'http': proxy.text.split('\n') }
     except:
       self.end(500, '500 Internal Error: Failed to generate scraped proxies')
     try:
-      
+      req = requests.get(path, proxies=proxy)
+      if req.status_code > 399:
+        
     except e:
-      self.end(400, f'400 Bad Request: The requested URL raised an error: {str(e)')
+      self.end(400, f'400 Bad Request: The requested URL raised an error: {str(e)}')
   
   def end(self, status, text):
     self.send_response(status)
