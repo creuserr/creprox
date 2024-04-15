@@ -5,9 +5,6 @@ import json
 
 class handler(BaseHTTPRequestHandler):
   def do_GET(self):
-    self.send_header('Content-Type', 'text/plain')
-    self.send_header('Access-Control-Allow-Origin', '*')
-    
     # format the provided url
     path = self.path[1:]
     if 'http:' in path:
@@ -39,6 +36,8 @@ class handler(BaseHTTPRequestHandler):
   
   def end(self, status, text, proxy=None, headers=None):
     self.send_response(status)
+    self.send_header('Content-Type', 'text/plain')
+    self.send_header('Access-Control-Allow-Origin', '*')
     if proxy != None:
       proxy = json.dumps(proxy).encode('utf-8')
       proxy = base64.b64encode(proxy)
