@@ -24,7 +24,10 @@ class handler(BaseHTTPRequestHandler):
     
     # start the request
     try:
-      req = requests.get(path, proxies=proxy)
+      h = {
+        'Origin': path
+      }
+      req = requests.get(path, proxies=proxy, headers=h)
       if req.status_code > 399:
         raise Exception(f'{req.status_code}: {req.text}')
       self.end(200, req.text, proxy['http'], req.headers)
