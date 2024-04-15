@@ -9,7 +9,7 @@
     "destination": "/api/index.py"
   }],
   "headers": [{
-    "source": "/api/index.js",
+    "source": "/api/index.py",
     "headers": [{
       "key": "Access-Control-Allow-Origin",
       "value": "*"
