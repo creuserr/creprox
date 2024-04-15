@@ -36,7 +36,7 @@ class handler(BaseHTTPRequestHandler):
   
   def end(self, status, text, proxy=None, headers=None):
     self.send_response(status)
-    self.send_header('Content-type', 'text/plain')
+    self.send_header('Content-Type', 'text/plain')
     self.send_header('Access-Control-Allow-Origin', '*')
     if proxy != None:
       proxy = json.dumps(proxy).encode('utf-8')
