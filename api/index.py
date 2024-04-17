@@ -2,6 +2,7 @@ from http.server import BaseHTTPRequestHandler
 import requests
 import base64
 import json
+import random
 
 class handler(BaseHTTPRequestHandler):
   def do_GET(self):
@@ -26,7 +27,7 @@ class handler(BaseHTTPRequestHandler):
     try:
       h = {
         'Origin': path,
-        'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36'
+        'User-Agent': random.choice(['Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36', ''])
       }
       req = requests.get(path, proxies=proxy, headers=h)
       if req.status_code > 399:
