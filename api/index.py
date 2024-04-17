@@ -27,7 +27,7 @@ class handler(BaseHTTPRequestHandler):
     try:
       h = {
         'Origin': path,
-        'User-Agent': random.choice(['Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36', ''])
+        'User-Agent': random.choice(['Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36', 'Mozilla/5.0 (Linux; Android 10; RMX112 Build/TP1A.220624.014; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/123.0.6312.7 Mobile Safari/537.31'])
       }
       req = requests.get(path, proxies=proxy, headers=h)
       if req.status_code > 399:
