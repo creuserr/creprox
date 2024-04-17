@@ -4,6 +4,28 @@ import base64
 import json
 import random
 
+class Rotation:
+  def __init__(self):
+    pass
+
+  def $model(self):
+    char = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+    return ''.join([char[random.randint(0, len(char) - 1)] for _ in range(3)]) + str(random.randint(100, 999))
+
+  def $build(self):
+    char = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+    return ''.join([char[random.randint(0, len(char) - 1)] for _ in range(2)]) + '.'.join([str(random.randint(1, 99999)) for _ in range(3)])
+
+  def create(self):
+    prod = f"Mozilla {random.randint(3, 5)}.0"
+    andr = f"Android {random.randint(10, 13)}"
+    mod = f"{self.$model()} Build/{self.$build()}"
+    kit = f"AppleWebKit/{random.randint(500, 550)}"
+    ver = f"Version/{random.randint(3, 5)}"
+    chrom = f"Chrome/{self.$build()}"
+    safar = f"Mobile Safari/{random.randint(500, 550)}"
+    return f"{prod} (Linux; {andr} {mod}) {kit} (KHTML, like Gecko) {ver} {chrom} {safar}"
+
 class handler(BaseHTTPRequestHandler):
   def do_GET(self):
     # format the provided url
@@ -27,7 +49,7 @@ class handler(BaseHTTPRequestHandler):
     try:
       h = {
         'Origin': path,
-        'User-Agent': random.choice(['Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36', 'Mozilla/5.0 (Linux; Android 10; RMX112 Build/TP1A.220624.014; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/123.0.6312.7 Mobile Safari/537.31'])
+        'User-Agent': Rotation.create()
       }
       req = requests.get(path, proxies=proxy, headers=h)
       if req.status_code > 399:
