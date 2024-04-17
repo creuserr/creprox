@@ -49,7 +49,7 @@ class handler(BaseHTTPRequestHandler):
     try:
       h = {
         'Origin': path,
-        'User-Agent': Rotation.create()
+        'User-Agent': Rotation().create()
       }
       req = requests.get(path, proxies=proxy, headers=h)
       if req.status_code > 399:
