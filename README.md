@@ -1,5 +1,5 @@
 # creprox
-`creprox` is an open-source HTTP GET and POST requesting tool that utilizes rotating IP origins, proxies, and user agents. useful and commonly used for web scraping purposes and unlimited public rest api access.
+`creprox` is an open-source HTTP GET and POST requesting tool that utilizes rotating IP origins, and user agents. useful and commonly used for web scraping purposes and unlimited public rest api access.
 
 <p align="center"><a href="https://creprox.vercel.app/https:/httpbin.org/get"><kbd>Try a demo :large_blue_circle:</kbd></a></p>
 
