@@ -1,32 +1,40 @@
-> [!NOTE]
-> This repository will be upgraded and rationalized soon. <br>
->
-> *Stamped at April 21, 2024*
-
 # creprox: rotating proxy
-creprox is an open-source HTTP GET request that utilizes rotating IP origins, proxies, and user agents. useful and commonly used for web scraping purposes. [Try a demo](https://creprox.vercel.app/https:/httpbin.org/get)
+`creprox` is an open-source HTTP GET and POST requesting tool that utilizes rotating IP origins, proxies, and user agents. useful and commonly used for web scraping purposes and unlimited public rest api access.
+
+<p align="center"><a href="https://creprox.vercel.app/https:/httpbin.org/get"><kbd>Try a demo :large_blue_circle:</kbd></a></p>
 
 ```http
-GET https://creprox.vercel.app/https://httpbin.org/ip
+GET https://creprox.vercel.app/https://httpbin.org/get
+POST https://creprox.vercel.app/https://httpbin.org/post
 ```
-
-*POST and other methods will be implemented soon.*
 
 # Usage
-To initiate an HTTP GET request, insert your complete URL after `creprox.vercel.app`.
+To initiate an HTTP GET/POST request, insert your complete URL after `creprox.vercel.app`.
 
 ```http
-GET https://creprox.vercel.app/https://github.com/creuserr?tab=repositories
+GET https://creprox.vercel.app/<URL>
+POST https://creprox.vercel.app/<URL>
 ```
 
-For details regarding request headers and the proxies used, refer to the response headers:
+For details regarding request headers, user agent, and proxies used, refer to the response headers:
 
 ```http
 X-Request-Headers: JSON
 X-Request-Proxy: Base-64 JSON
+X-Request-UA: String
 ```
 
-<br>
+# Troubleshooting
 
-### Third-party libraries
-*This service heavily utilizes and accredits [proxyscrape.com](https://proxyscrape.com) and [proxy-list.download](https://proxy-list.download).*
+1. **Trouble on URL format** <br>
+   This can be triggered due to the protocol of your URL. If your URL is like this:
+   ```
+   https://creprox.vercel.app/https://...
+   ```
+   Try replacing `https://` with `https:/`
+   ```
+   https://creprox.vercel.app/https:/...
+   ```
+
+# Third-party
+Credits to [proxyscrape.com](https://proxyscrape.com) and [proxy-list.download](https://proxy-list.download) for providing proxy servers.
