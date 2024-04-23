@@ -28,7 +28,7 @@ class Rotation:
 
 class handler(BaseHTTPRequestHandler):
   def do_GET(self):
-    url = self.url()
+    path = self.url()
     proxy = self.proxy()
     try:
       h = {
@@ -43,7 +43,7 @@ class handler(BaseHTTPRequestHandler):
       return self.end(400, f'400 Bad Request: The request raised an error\n{str(e)}')
   
   def do_POST(self):
-    url = self.url()
+    path = self.url()
     proxy = self.proxy()
     try:
       h = {
