@@ -58,7 +58,7 @@ class handler(BaseHTTPRequestHandler):
         j = json.loads(self.rfile.read(int(h["Content-Length"])))
       else:
         d = self.rfile.read()
-      req = requests.get(path, proxies=proxy, headers=h, data=d, json=j)
+      req = requests.post(path, proxies=proxy, headers=h, data=d, json=j)
       if req.status_code > 399:
         raise Exception(f'{req.status_code}: {req.text}')
       self.end(200, req.text, proxy['http'], req.headers)
