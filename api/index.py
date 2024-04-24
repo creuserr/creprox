@@ -69,7 +69,7 @@ class handler(BaseHTTPRequestHandler):
     self.send_response(status)
     self.send_header('Content-Type', 'text/plain')
     self.send_header('Access-Control-Allow-Origin', '*')
-    if proxy != None:
+    if ua != None:
       proxy = json.dumps(proxy).encode('utf-8')
       proxy = base64.b64encode(proxy)
       self.send_header('X-Request-Proxy', proxy.decode('utf-8'))
