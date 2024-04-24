@@ -38,7 +38,7 @@ class handler(BaseHTTPRequestHandler):
       req = requests.get(path, proxies=proxy, headers=h)
       if req.status_code > 399:
         raise Exception(f'{req.status_code}: {req.text}')
-      self.end(200, req.text, proxy['http'], req.headers, h['User-Agent'])
+      self.end(200, req.text, req.headers, h['User-Agent'])
     except BaseException as e:
       return self.end(400, f'400 Bad Request: The request raised an error\n{str(e)}')
   
@@ -61,18 +61,15 @@ class handler(BaseHTTPRequestHandler):
       req = requests.post(path, proxies=proxy, headers=h, data=d, json=j)
       if req.status_code > 399:
         raise Exception(f'{req.status_code}: {req.text}')
-      self.end(200, req.text, proxy['http'], req.headers, h['User-Agent'])
+      self.end(200, req.text, req.headers, h['User-Agent'])
     except BaseException as e:
       return self.end(400, f'400 Bad Request: The request raised an error\n{str(e)}')
   
-  def end(self, status, text, proxy=None, headers=None, ua=None):
+  def end(self, status, text, headers=None, ua=None):
     self.send_response(status)
     self.send_header('Content-Type', 'text/plain')
     self.send_header('Access-Control-Allow-Origin', '*')
     if ua != None:
-      prox = json.dumps(proxy).encode('utf-8')
-      prox = base64.b64encode(prox)
-      self.send_header('X-Request-Proxy', prox.decode('utf-8'))
       self.send_header('X-Response-Headers', json.dumps(dict(headers)))
       self.send_header('X-Request-UA', ua)
     self.end_headers()
