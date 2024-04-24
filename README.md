@@ -19,8 +19,7 @@ POST https://creprox.vercel.app/<URL>
 For details regarding request headers, user agent, and proxies used, refer to the response headers:
 
 ```http
-X-Request-Headers: JSON
-X-Request-Proxy: Base-64 JSON
+X-Response-Headers: JSON
 X-Request-UA: String
 ```
 
