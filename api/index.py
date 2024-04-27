@@ -44,6 +44,8 @@ class handler(BaseHTTPRequestHandler):
   
   def do_POST(self):
     path = self.url()
+    if path == None:
+      return self.end(400, '204 No Content: ')
     proxy = self.proxy()
     try:
       h = {
